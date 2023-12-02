@@ -1,0 +1,17 @@
+{
+  "name": "ape-node-wechatpay-v3",
+  "version": "1.0.1",
+  "description": "微信支付V3-node版SDK",
+  "keywords": [
+    "node",
+    "wechat",
+    "微信支付",
+    "微信提现"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "小猿工作室",
+  "license": "ISC"
+}
