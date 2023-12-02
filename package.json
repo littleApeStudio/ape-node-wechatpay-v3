@@ -8,6 +8,7 @@
     "微信支付",
     "微信提现"
   ],
+  "homepage": "https://github.com/littleApeStudio/ape-node-weChatPayV3",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -32,6 +32,7 @@ const wxPay = new weChatPay({
 | `serial_no`     | 证书序列号                           | 是              |
 | `apiclientCert` | 公钥                                 | 是              |
 | `apiclientkey`  | 密钥                                 | 是              |
+| `AuType`  | 认证类型，不传则默认为WECHATPAY2-SHA256-RSA2048| 否              |
 
 ###### 注意：
 

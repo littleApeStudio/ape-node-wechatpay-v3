@@ -6,6 +6,7 @@ function weChatPay(data) {
     this.mchid = data.mchid //商户号
     this.apiclientCert = data.apiclientCert //公钥
     this.apiclientkey = data.apiclientkey //密钥
+    this.AuType = data.AuType || "WECHATPAY2-SHA256-RSA2048"
 
     // 获取签名
     this.getSignature = function (method, url, timestamp, nonce_str, body) {// 请求方法，请求地址，时间戳，请求随机串，请求体
@@ -25,7 +26,7 @@ function weChatPay(data) {
     // 生成 Authorization
     this.getAuthorization = function (nonce_str, timestamp, signature) { // 请求随机串，时间戳，签名值
         // 生成 Authorization
-        let authorization = `WECHATPAY2-SHA256-RSA2048 mchid="${this.mchid}",nonce_str="${nonce_str}",signature="${signature}",timestamp="${timestamp}",serial_no="${this.serialNo}"`
+        let authorization = `${this.AuType} mchid="${this.mchid}",nonce_str="${nonce_str}",signature="${signature}",timestamp="${timestamp}",serial_no="${this.serialNo}"`
         // 返回 Authorization
         return authorization
     }
