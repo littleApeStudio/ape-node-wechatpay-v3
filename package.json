@@ -1,6 +1,6 @@
 {
   "name": "ape-node-wechatpay-v3",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "微信支付V3-node版SDK",
   "keywords": [
     "node",
@@ -9,6 +9,9 @@
     "微信提现"
   ],
   "homepage": "https://github.com/littleApeStudio/ape-node-weChatPayV3",
+  "dependencies": {
+    "axios": "^1.6.2"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
