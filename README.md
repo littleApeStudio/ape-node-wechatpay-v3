@@ -132,10 +132,11 @@ console.log(resuult);
 
 参数说明
 
-| 参数名称      | 参数介绍                            | 是否必须                                                                                              |
-| :------------ | :---------------------------------- | :---------------------------------------------------------------------------------------------------- |
-| `data`        | jsapi 下单的 body 参数              | 是                                                                                                    |
-| data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/jsapi-payment/direct-jsons/jsapi-prepay.html) |
+| 参数名称      | 参数介绍                            | 是否必须   |
+| :------------ | :-------------------------------- | :--------- |
+| `data`        | jsapi 下单的 body 参数              | 是       |
+
+[详细请点击查看微信官方jsapi 下单文档](https://pay.weixin.qq.com/docs/merchant/apis/jsapi-payment/direct-jsons/jsapi-prepay.html)
 
 ### Native 下单
 
@@ -168,10 +169,11 @@ console.log(resuult);
 
 参数说明
 
-| 参数名称      | 参数介绍                            | 是否必须                                                                                                |
-| :------------ | :---------------------------------- | :------------------------------------------------------------------------------------------------------ |
-| `data`        | native 下单的 body 参数             | 是                                                                                                      |
-| data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/native-payment/direct-jsons/native-prepay.html) |
+| 参数名称      | 参数介绍                            | 是否必须   |
+| :------------ | :-------------------------------- | :--------- |
+| `data`        | native 下单的 body 参数             | 是        |
+
+[详细请点击查看微信官方native 下单文档](https://pay.weixin.qq.com/docs/merchant/apis/native-payment/direct-jsons/native-prepay.html)
 
 ## 版本介绍
 
