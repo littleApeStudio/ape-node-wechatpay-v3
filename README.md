@@ -136,7 +136,7 @@ console.log(resuult);
 | :------------ | :-------------------------------- | :--------- |
 | `data`        | jsapi 下单的 body 参数              | 是       |
 
-[详细请点击查看微信官方jsapi 下单文档](https://pay.weixin.qq.com/docs/merchant/apis/jsapi-payment/direct-jsons/jsapi-prepay.html)
+[详细请点击查看微信官方-jsapi-下单文档](https://pay.weixin.qq.com/docs/merchant/apis/jsapi-payment/direct-jsons/jsapi-prepay.html)
 
 ### Native 下单
 
@@ -173,7 +173,7 @@ console.log(resuult);
 | :------------ | :-------------------------------- | :--------- |
 | `data`        | native 下单的 body 参数             | 是        |
 
-[详细请点击查看微信官方native 下单文档](https://pay.weixin.qq.com/docs/merchant/apis/native-payment/direct-jsons/native-prepay.html)
+[详细请点击查看微信官方-native-下单文档](https://pay.weixin.qq.com/docs/merchant/apis/native-payment/direct-jsons/native-prepay.html)
 
 ## 版本介绍
 
