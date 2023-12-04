@@ -1,12 +1,12 @@
 # ape-node-wechatpay-v3
 
-## 1、安装
+## 安装
 
 ### npm
 
-`npm i ape-node-wechatpay-v3 --save`
-
----
+```ssh
+npm i ape-node-wechatpay-v3 --save
+```
 
 ## weChatPay 用法介绍
 
@@ -75,7 +75,6 @@ let authorization = wxPay.getAuthorization(nonce_str, timestamp, signature);
 | `timestamp` | 时间戳                               | 是       |
 | `signature` | 签名值                               | 是       |
 
----
 
 ## weChatPay 内置方法介绍
 
@@ -113,7 +112,6 @@ console.log(resuult);
 | `data`        | native 下单的 body 参数             | 是                                                                                            |
 | data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/combine-payment/orders/jsapi-prepay.html) |
 
----
 
 ### Native 下单
 
@@ -146,7 +144,6 @@ console.log(resuult);
 | `data`        | native 下单的 body 参数             | 是                                                                                            |
 | data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/native-payment/direct-jsons/native-prepay.html) |
 
----
 
 ## 版本介绍
 
