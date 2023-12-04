@@ -2,30 +2,32 @@
 
 ## 1、安装
 
-#### npm
+### npm
 
 `npm i ape-node-wechatpay-v3 --save`
 
 ---
 
-## 2、weChatPay 用法介绍
+## weChatPay 用法介绍
 
-#### 创建实例
+### 创建 weChatPay 实例
+
+创建实例
 
 ```javascript
-const weChatPay = require('ape-node-wechatpay-v3');
-const fs = require('fs');
+const weChatPay = require("ape-node-wechatpay-v3");
+const fs = require("fs");
 
 const wxPay = new weChatPay({
-  appid: 'xxxxxx',
-  mchid: 'xxxxxx',
-  serial_no: 'xxxxxx',
-  apiclientCert: fs.readFileSync('xxxxxx.pem'),
-  apiclientkey: fs.readFileSync('xxxxxx.pem'),
+  appid: "xxxxxx",
+  mchid: "xxxxxx",
+  serial_no: "xxxxxx",
+  apiclientCert: fs.readFileSync("xxxxxx.pem"),
+  apiclientkey: fs.readFileSync("xxxxxx.pem"),
 });
 ```
 
-#### 创建实例参数说明
+参数说明
 
 | 参数名称        | 参数介绍                                         | 是否必须 |
 | :-------------- | :----------------------------------------------- | :------- |
@@ -36,17 +38,18 @@ const wxPay = new weChatPay({
 | `apiclientkey`  | 密钥                                             | 是       |
 | `authType`      | 认证类型，不传则默认为 WECHATPAY2-SHA256-RSA2048 | 否       |
 
-###### 注意：
 
-1、serial_no 是证书序列号，请在商户后台查看。
+`注意：serial_no 是证书序列号，请在商户后台查看。`
 
-#### 获取签名值
+### 获取签名值
+
+示例代码
 
 ```javascript
 let signature = wxPay.getSignature(method, url, timestamp, nonce_str, body);
 ```
 
-#### 获取签名值参数说明
+参数说明
 
 | 参数名称    | 参数介绍                           | 是否必须 |
 | :---------- | :--------------------------------- | :------- |
@@ -56,13 +59,15 @@ let signature = wxPay.getSignature(method, url, timestamp, nonce_str, body);
 | `nonce_str` | 请求随机串                         | 是       |
 | `body`      | 请求体（接口需要传则给，反之不给） | 否       |
 
-#### 获取 HTTP Authorization 头
+### 获取 HTTP Authorization 头
+
+示例代码
 
 ```javascript
 let authorization = wxPay.getAuthorization(nonce_str, timestamp, signature);
 ```
 
-#### 获取获取 HTTP Authorization 头参数说明
+参数说明
 
 | 参数名称    | 参数介绍                             | 是否必须 |
 | :---------- | :----------------------------------- | :------- |
@@ -72,17 +77,55 @@ let authorization = wxPay.getAuthorization(nonce_str, timestamp, signature);
 
 ---
 
-## 3、weChatPay 内置方法介绍
+## weChatPay 内置方法介绍
 
-#### Native 下单
+### Jsapi 下单
+
+示例代码
 
 ```javascript
 let data = {
-  appid: 'xxxxxx',
-  mchid: 'xxxxxx',
-  description: '测试',
-  out_trade_no: 'xxxxxx',
-  notify_url: 'xxxxxx',
+  appid: "xxxxxx",
+  mchid: "xxxxxx",
+  description: "测试",
+  out_trade_no: "xxxxxx",
+  notify_url: "xxxxxx",
+  amount: {
+    total: 1,
+  },
+  payer: {
+    openid: "xxxxxx",
+  },
+};
+let result;
+try {
+  result = await wxPay.jsapiPay(data);
+} catch (error) {
+  console.log(error);
+}
+console.log(resuult);
+```
+
+参数说明
+
+| 参数名称      | 参数介绍                            | 是否必须                                                                                      |
+| :------------ | :---------------------------------- | :-------------------------------------------------------------------------------------------- |
+| `data`        | native 下单的 body 参数             | 是                                                                                            |
+| data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/combine-payment/orders/jsapi-prepay.html) |
+
+---
+
+### Native 下单
+
+示例代码
+
+```javascript
+let data = {
+  appid: "xxxxxx",
+  mchid: "xxxxxx",
+  description: "测试",
+  out_trade_no: "xxxxxx",
+  notify_url: "xxxxxx",
   amount: {
     total: 1,
   },
@@ -96,21 +139,19 @@ try {
 console.log(resuult);
 ```
 
-#### Native 下单参数说明
+参数说明
 
 | 参数名称      | 参数介绍                            | 是否必须                                                                                      |
 | :------------ | :---------------------------------- | :-------------------------------------------------------------------------------------------- |
 | `data`        | native 下单的 body 参数             | 是                                                                                            |
-| data 里的参数 | 微信官方文档有说明（Body 包体参数） | <https://pay.weixin.qq.com/docs/merchant/apis/native-payment/direct-jsons/native-prepay.html> |
+| data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/native-payment/direct-jsons/native-prepay.html) |
 
 ---
 
-## 4、版本介绍
+## 版本介绍
 
 | 版本号 | 版本介绍                                   |
 | :----- | :----------------------------------------- |
 | 1.0.0  | 仅支持获取签名和获取头部参数 Authorization |
 | 1.0.1  | 在 1.0.0 的基础上增加了说明文档            |
 | 1.0.2  | 增加了 native 支付下单函数的封装           |
-
-######

@@ -9,6 +9,10 @@
     "微信提现"
   ],
   "homepage": "https://github.com/littleApeStudio/ape-node-weChatPayV3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/littleApeStudio/ape-node-weChatPayV3"
+  },
   "dependencies": {
     "axios": "^1.6.2"
   },

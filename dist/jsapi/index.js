@@ -1,7 +1,7 @@
 /**
- * native 支付
+ * jsapi 支付
  */
-const native = {}
+const jsapi = {}
 
 
 
@@ -10,13 +10,13 @@ const native = {}
  * 
  * @param param 请求参数
  */
-native.nativePay = function (param) {
+jsapi.jsapiPay = function (param) {
     // 当前时间戳
     let timestamp = Math.round(Date.now() / 1000)
     // 随机字符串
     let randomString = this.getRandomString()
     // 签名值
-    let signature = this.getSignature("POST", "/v3/pay/transactions/native", timestamp, randomString, JSON.stringify(param))
+    let signature = this.getSignature("POST", "/v3/pay/transactions/jsapi", timestamp, randomString, JSON.stringify(param))
     // 请求头 authorization
     let authorization = this.getAuthorization(randomString, timestamp, signature)
 
@@ -25,7 +25,7 @@ native.nativePay = function (param) {
         if (param) {
             // 发送请求
             this.axios({
-                url: "https://api.mch.weixin.qq.com/v3/pay/transactions/native",
+                url: "https://api.mch.weixin.qq.com/v3/pay/transactions/jsapi",
                 method: "post",
                 headers: {
                     "Accept": "application/json",
@@ -36,7 +36,7 @@ native.nativePay = function (param) {
             }).then((res) => {
                 resolve({
                     code: res.status,
-                    code_url: res.data.code_url
+                    prepay_id: res.data.prepay_id
                 })
             }).catch((err) => {
                 reject(JSON.stringify({
@@ -52,4 +52,4 @@ native.nativePay = function (param) {
 
 
 
-module.exports = native
+module.exports = jsapi

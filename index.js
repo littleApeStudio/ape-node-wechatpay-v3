@@ -1,6 +1,10 @@
 class weChatPay {
     constructor(data) {
         /**
+         * axios
+         */
+        this.axios = require("axios")
+        /**
          * node 内置加解密模块
          */
         this.crypto = require('crypto');
@@ -38,6 +42,14 @@ class weChatPay {
  */
 const tools = require("./dist/tools/index")
 Object.assign(weChatPay.prototype, tools);
+
+
+
+/**
+ * 导入 Jsapi 支付方法（下单 ）
+ */
+const jsapi = require("./dist/jsapi/index")
+Object.assign(weChatPay.prototype, jsapi);
 
 
 
