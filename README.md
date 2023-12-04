@@ -123,6 +123,11 @@ try {
   console.log(error);
 }
 console.log(resuult);
+// 正常返回如下示例
+// {
+//     "code": 200,
+//     "prepay_id": "xxxxxxxxxx"
+// }
 ```
 
 参数说明
@@ -154,6 +159,11 @@ try {
   console.log(error);
 }
 console.log(resuult);
+// 正常返回如下示例
+// {
+//     "code": 200,
+//     "code_url": "xxxxxxxxxx"
+// }
 ```
 
 参数说明
