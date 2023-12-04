@@ -2,16 +2,25 @@
 
 # 目录
 
-## 安装
-  ### npm
-## weChatPay 用法介绍
-  ### 创建 weChatPay 实例
-  ### 获取签名值
-  ### 获取 HTTP Authorization 头
-## weChatPay 内置方法介绍
-  ### Jsapi 下单
-  ### Native 下单
-## 版本介绍
+[安装](#安装)
+
+  [安装](#npm)
+
+[用法介绍](#用法介绍)
+
+  [创建 weChatPay 实例](#创建-weChatPay-实例)
+
+  [获取签名值](#获取签名值)
+
+  [获取 HTTP Authorization 头](#获取-http-authorization-头)
+
+[内置方法介绍](#内置方法介绍)
+
+  [Jsapi 下单](#Jsapi-下单)
+
+  [Native 下单](#Native-下单)
+
+[版本介绍](#版本介绍)W
 
 ## 安装
 
