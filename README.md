@@ -110,7 +110,7 @@ console.log(resuult);
 | 参数名称      | 参数介绍                            | 是否必须                                                                                      |
 | :------------ | :---------------------------------- | :-------------------------------------------------------------------------------------------- |
 | `data`        | native 下单的 body 参数             | 是                                                                                            |
-| data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/combine-payment/orders/jsapi-prepay.html) |
+| data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/jsapi-payment/direct-jsons/jsapi-prepay.html) |
 
 
 ### Native 下单
