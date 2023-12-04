@@ -1,5 +1,18 @@
 # ape-node-wechatpay-v3
 
+# 目录
+
+## 安装
+  ### npm
+## weChatPay 用法介绍
+  ### 创建 weChatPay 实例
+  ### 获取签名值
+  ### 获取 HTTP Authorization 头
+## weChatPay 内置方法介绍
+  ### Jsapi 下单
+  ### Native 下单
+## 版本介绍
+
 ## 安装
 
 ### npm
@@ -15,15 +28,15 @@ npm i ape-node-wechatpay-v3 --save
 创建实例
 
 ```javascript
-const weChatPay = require("ape-node-wechatpay-v3");
-const fs = require("fs");
+const weChatPay = require('ape-node-wechatpay-v3');
+const fs = require('fs');
 
 const wxPay = new weChatPay({
-  appid: "xxxxxx",
-  mchid: "xxxxxx",
-  serial_no: "xxxxxx",
-  apiclientCert: fs.readFileSync("xxxxxx.pem"),
-  apiclientkey: fs.readFileSync("xxxxxx.pem"),
+  appid: 'xxxxxx',
+  mchid: 'xxxxxx',
+  serial_no: 'xxxxxx',
+  apiclientCert: fs.readFileSync('xxxxxx.pem'),
+  apiclientkey: fs.readFileSync('xxxxxx.pem'),
 });
 ```
 
@@ -37,7 +50,6 @@ const wxPay = new weChatPay({
 | `apiclientCert` | 公钥                                             | 是       |
 | `apiclientkey`  | 密钥                                             | 是       |
 | `authType`      | 认证类型，不传则默认为 WECHATPAY2-SHA256-RSA2048 | 否       |
-
 
 `注意：serial_no 是证书序列号，请在商户后台查看。`
 
@@ -75,7 +87,6 @@ let authorization = wxPay.getAuthorization(nonce_str, timestamp, signature);
 | `timestamp` | 时间戳                               | 是       |
 | `signature` | 签名值                               | 是       |
 
-
 ## weChatPay 内置方法介绍
 
 ### Jsapi 下单
@@ -84,16 +95,16 @@ let authorization = wxPay.getAuthorization(nonce_str, timestamp, signature);
 
 ```javascript
 let data = {
-  appid: "xxxxxx",
-  mchid: "xxxxxx",
-  description: "测试",
-  out_trade_no: "xxxxxx",
-  notify_url: "xxxxxx",
+  appid: 'xxxxxx',
+  mchid: 'xxxxxx',
+  description: '测试',
+  out_trade_no: 'xxxxxx',
+  notify_url: 'xxxxxx',
   amount: {
     total: 1,
   },
   payer: {
-    openid: "xxxxxx",
+    openid: 'xxxxxx',
   },
 };
 let result;
@@ -107,11 +118,10 @@ console.log(resuult);
 
 参数说明
 
-| 参数名称      | 参数介绍                            | 是否必须                                                                                      |
-| :------------ | :---------------------------------- | :-------------------------------------------------------------------------------------------- |
-| `data`        | native 下单的 body 参数             | 是                                                                                            |
+| 参数名称      | 参数介绍                            | 是否必须                                                                                              |
+| :------------ | :---------------------------------- | :---------------------------------------------------------------------------------------------------- |
+| `data`        | jsapi 下单的 body 参数              | 是                                                                                                    |
 | data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/jsapi-payment/direct-jsons/jsapi-prepay.html) |
-
 
 ### Native 下单
 
@@ -119,11 +129,11 @@ console.log(resuult);
 
 ```javascript
 let data = {
-  appid: "xxxxxx",
-  mchid: "xxxxxx",
-  description: "测试",
-  out_trade_no: "xxxxxx",
-  notify_url: "xxxxxx",
+  appid: 'xxxxxx',
+  mchid: 'xxxxxx',
+  description: '测试',
+  out_trade_no: 'xxxxxx',
+  notify_url: 'xxxxxx',
   amount: {
     total: 1,
   },
@@ -139,11 +149,10 @@ console.log(resuult);
 
 参数说明
 
-| 参数名称      | 参数介绍                            | 是否必须                                                                                      |
-| :------------ | :---------------------------------- | :-------------------------------------------------------------------------------------------- |
-| `data`        | native 下单的 body 参数             | 是                                                                                            |
+| 参数名称      | 参数介绍                            | 是否必须                                                                                                |
+| :------------ | :---------------------------------- | :------------------------------------------------------------------------------------------------------ |
+| `data`        | native 下单的 body 参数             | 是                                                                                                      |
 | data 里的参数 | 微信官方文档有说明（Body 包体参数） | [点击查看](https://pay.weixin.qq.com/docs/merchant/apis/native-payment/direct-jsons/native-prepay.html) |
-
 
 ## 版本介绍
 
