@@ -4,21 +4,21 @@
 
 [1.安装](#安装)
 
-&#x20; [1.1npm](#npm)
+- [1.1npm](#npm)
 
 [2.用法介绍](#用法介绍)
 
-&#x20; [2.1 创建 weChatPay 实例](#创建-weChatPay-实例)
+- [2.1 创建 weChatPay 实例](#创建-weChatPay-实例)
 
-&#x20; [2.2 获取签名值](#获取签名值)
+- [2.2 获取签名值](#获取签名值)
 
-&#x20; [2.3 获取 HTTP Authorization 头](#获取-http-authorization-头)
+- [2.3 获取 HTTP Authorization 头](#获取-http-authorization-头)
 
 [3.内置方法介绍](#内置方法介绍)
 
-&#x20; [3.1Jsapi 下单](#Jsapi-下单)
+- [3.1Jsapi 下单](#Jsapi-下单)
 
-&#x20; [3.2Native 下单](#Native-下单)
+- [3.2Native 下单](#Native-下单)
 
 [4.版本介绍](#版本介绍)
 
