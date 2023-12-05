@@ -3,8 +3,6 @@
  */
 const native = {}
 
-
-
 /**
  * 下单
  * 
@@ -49,7 +47,5 @@ native.nativePay = function (param) {
         }
     })
 }
-
-
 
 module.exports = native

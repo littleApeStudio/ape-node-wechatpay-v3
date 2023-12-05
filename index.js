@@ -35,31 +35,23 @@ class apeWeChatPay {
     }
 }
 
-
-
 /**
  * 导入工具方法（获取签名值 / 获取请求头 Authorization / 随机字符串生成函数 ）
  */
 const tools = require("./dist/tools/index")
-Object.assign(weChatPay.prototype, tools);
-
-
+Object.assign(apeWeChatPay.prototype, tools);
 
 /**
  * 导入 Jsapi 支付方法（下单 ）
  */
 const jsapi = require("./dist/jsapi/index")
-Object.assign(weChatPay.prototype, jsapi);
-
-
+Object.assign(apeWeChatPay.prototype, jsapi);
 
 /**
  * 导入 Native 支付方法（下单 ）
  */
 const native = require("./dist/native/index")
-Object.assign(weChatPay.prototype, native);
-
-
+Object.assign(apeWeChatPay.prototype, native);
 
 /**
  * 导出类

@@ -3,8 +3,6 @@
  */
 const jsapi = {}
 
-
-
 /**
  * 下单
  * 
@@ -49,7 +47,5 @@ jsapi.jsapiPay = function (param) {
         }
     })
 }
-
-
 
 module.exports = jsapi

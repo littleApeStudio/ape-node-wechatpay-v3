@@ -3,8 +3,6 @@
  */
 const tools = {}
 
-
-
 /**
  * 获取签名
  * 
@@ -29,8 +27,6 @@ tools.getSignature = function (method, url, timestamp, nonce_str, body) {
     return signature;
 };
 
-
-
 /**
  * 生成 Authorization
  * 
@@ -44,8 +40,6 @@ tools.getAuthorization = function (nonce_str, timestamp, signature) {
     // 返回 Authorization
     return authorization;
 };
-
-
 
 /**
  * 生成随机字符串
@@ -62,7 +56,5 @@ tools.getRandomString = function (length) {
     }
     return result;
 }
-
-
 
 module.exports = tools
