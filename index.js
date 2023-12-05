@@ -1,4 +1,4 @@
-class weChatPay {
+class apeWeChatPay {
     constructor(data) {
         /**
          * axios
@@ -64,4 +64,4 @@ Object.assign(weChatPay.prototype, native);
 /**
  * 导出类
  */
-module.exports = weChatPay
+module.exports = apeWeChatPay

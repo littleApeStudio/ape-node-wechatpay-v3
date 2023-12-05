@@ -37,10 +37,10 @@ npm i ape-node-wechatpay-v3 --save
 创建实例
 
 ```javascript
-const weChatPay = require('ape-node-wechatpay-v3');
+const apeWeChatPay = require('ape-node-wechatpay-v3');
 const fs = require('fs');
 
-const wxPay = new weChatPay({
+const weChatPay = new apeWeChatPay({
   appid: 'xxxxxx',
   mchid: 'xxxxxx',
   serial_no: 'xxxxxx',
@@ -67,7 +67,7 @@ const wxPay = new weChatPay({
 示例代码
 
 ```javascript
-let signature = wxPay.getSignature(method, url, timestamp, nonce_str, body);
+let signature = weChatPay.getSignature(method, url, timestamp, nonce_str, body);
 ```
 
 参数说明
@@ -85,7 +85,7 @@ let signature = wxPay.getSignature(method, url, timestamp, nonce_str, body);
 示例代码
 
 ```javascript
-let authorization = wxPay.getAuthorization(nonce_str, timestamp, signature);
+let authorization = weChatPay.getAuthorization(nonce_str, timestamp, signature);
 ```
 
 参数说明
@@ -118,7 +118,7 @@ let data = {
 };
 let result;
 try {
-  result = await wxPay.jsapiPay(data);
+  result = await weChatPay.jsapiPay(data);
 } catch (error) {
   console.log(error);
 }
@@ -155,7 +155,7 @@ let data = {
 };
 let result;
 try {
-  result = await wxPay.nativePay(data);
+  result = await weChatPay.nativePay(data);
 } catch (error) {
   console.log(error);
 }
