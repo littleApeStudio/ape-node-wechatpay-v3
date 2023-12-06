@@ -10,7 +10,7 @@ const native = {}
  */
 native.nativePay = function (param) {
     // 当前时间戳
-    let timestamp = Math.round(Date.now() / 1000)
+    let timestamp = Math.floor(Date.now() / 1000)
     // 随机字符串
     let randomString = this.getRandomString()
     // 签名值
@@ -37,10 +37,10 @@ native.nativePay = function (param) {
                     code_url: res.data.code_url
                 })
             }).catch((err) => {
-                reject(JSON.stringify({
+                reject({
                     code: err.response ? err.response.status : "",
                     data: err.response ? err.response.data : ""
-                }))
+                })
             })
         } else {
             reject("Native 支付下单失败，失败原因：缺少参数 param，未发送请求")
