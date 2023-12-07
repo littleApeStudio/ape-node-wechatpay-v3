@@ -9,6 +9,10 @@ class apeWeChatPay {
          */
         this.crypto = require('crypto');
         /**
+         * node 内置文件操作模块
+         */
+        this.fs = require('fs');
+        /**
          * 商户证书序列号
          */
         this.serialNo = data.serial_no;

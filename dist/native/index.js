@@ -34,16 +34,21 @@ native.nativePay = function (param) {
             }).then((res) => {
                 resolve({
                     code: res.status,
-                    code_url: res.data.code_url
+                    code_url: res.data.code_url,
+                    msg: "success"
                 })
             }).catch((err) => {
                 reject({
                     code: err.response ? err.response.status : "",
-                    data: err.response ? err.response.data : ""
+                    data: err.response ? err.response.data : "",
+                    msg: "Native 支付下单返回异常"
                 })
             })
         } else {
-            reject("Native 支付下单失败，失败原因：缺少参数 param，未发送请求")
+            reject({
+                code: 500,
+                msg: "Native 支付下单失败，失败原因：缺少参数 param，未发送请求"
+            })
         }
     })
 }
