@@ -39,7 +39,7 @@ native.nativePay = function (param) {
                 })
             }).catch((err) => {
                 reject({
-                    code: err.response ? err.response.status : "",
+                    code: err.response ? err.response.status : 500,
                     data: err.response ? err.response.data : "",
                     msg: "Native 支付下单返回异常"
                 })
