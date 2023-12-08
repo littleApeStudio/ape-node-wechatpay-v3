@@ -122,7 +122,7 @@ try {
 } catch (error) {
   console.log(error);
 }
-console.log(resuult);
+console.log(result);
 // 正常返回如下示例
 // {
 //     "code": 200,
@@ -159,7 +159,7 @@ try {
 } catch (error) {
   console.log(error);
 }
-console.log(resuult);
+console.log(result);
 // 正常返回如下示例
 // {
 //     "code": 200,

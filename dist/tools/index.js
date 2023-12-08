@@ -30,9 +30,8 @@ tools.getRandomString = function (length) {
  */
 tools.getSignature = function (method, url, timestamp, nonce_str, body) {
   // 生成签名串
-  let signString = `${method}\n${url}\n${timestamp}\n${nonce_str}\n${
-    body || ""
-  }\n`;
+  let signString = `${method}\n${url}\n${timestamp}\n${nonce_str}\n${body || ""
+    }\n`;
   // 创建Sign对象，并指定算法为SHA256
   let createSign = this.crypto.createSign("SHA256");
   // 更新签名串
@@ -92,35 +91,55 @@ tools.getWeChatPayCert = function (userAgent, downloadPath) {
         "User-Agent": userAgent || "userAgent",
         Authorization: authorization,
       },
-      data: param,
     })
       .then((res) => {
-        console.log(res);
-        let body = JSON.stringify("{}");
-        let pem = "";
-        // 下载应答报文到本地
-        this.fs.writeFile(downloadPath + "/wechatpay.json", body, (err) => {
-          if (err) {
-            reject(err);
-          } else {
-            // 下载 pem 证书到本地
-            this.fs.writeFile(downloadPath + "/wechatpay.pem", pem, (err) => {
-              if (err) {
-                reject(err);
-              } else {
-                resolve({
-                  code: 200,
-                  msg: "下载证书成功",
-                });
-              }
-            });
-          }
-        });
+        let data = res.data
+        let certData = {}
+        if (data.data.length > 1) {
+          certData = data.data[data.data.length - 1]
+        } else {
+          certData = data.data[0]
+        }
+        let body = JSON.stringify(data);
+        // 需要解密的证书密文
+        let ciphertext = certData.encrypt_certificate.ciphertext
+        // APIv3 密钥
+        let key = "LiuTeng200005130930Apestudio2023"
+        // 加密证书的随机串
+        let nonce = certData.encrypt_certificate.nonce
+        // 加密证书的附加数据
+        let associated_data = certData.encrypt_certificate.associated_data
+        let pem = this.decryptingBody(ciphertext, key, nonce, associated_data);
+        if (pem) {
+          // 下载应答报文到本地
+          this.fs.writeFile(downloadPath + "/wechatpay.json", body, (err) => {
+            if (err) {
+              reject(err);
+            } else {
+              // 下载 pem 证书到本地
+              this.fs.writeFile(downloadPath + "/wechatpay.pem", pem, (err) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve({
+                    code: 200,
+                    msg: "下载证书成功",
+                  });
+                }
+              });
+            }
+          });
+        } else {
+          reject({
+            code: 500,
+            msg: "解密微信支付平台证书异常",
+          });
+        }
       })
       .catch((err) => {
         reject({
-          code: err.response ? err.response.status : "",
-          data: err.response ? err.response.data : "",
+          code: err.response ? err.response.status : 500,
+          data: err.response ? err.response.data : err,
           msg: "下载微信支付平台证书返回异常",
         });
       });
@@ -167,23 +186,29 @@ tools.verifySignature = function (Signature, Serial, Timestamp, Nonce) {
 
 /**
  * 
- * @ cipher 要解密的数据
+ * @ ciphertext 加密的数据
  * @ key APIv3密钥
- * @ nonce 加密证书的随机串
- * @ algorithm 加密算法
+ * @ nonce 加密的随机串
+ * @ associated_data 加密的附加数据
  */
-tools.decryptingBody = function (cipher, key, nonce, algorithm) {
-  // 要解密的数据
-  const ciphertext = Buffer.from(cipher);
-  // 创建AEAD_AES_256_GCM模式的解密器
-  const decipher = this.crypto.createDecipheriv(algorithm || "AEAD_AES_256_GCM", key, nonce);
-  // 解密数据
-  const plaintext = decipher.update(ciphertext, "hex", "utf8");
-  const tag = decipher.final();
-  return {
-    plaintext: plaintext,
-    tag: tag,
-  };
+tools.decryptingBody = function (ciphertext, key, nonce, associated_data) {
+  // 将密钥字符串转换为 Buffer 对象
+  const keyBytes = Buffer.from(key);
+  // 将 加密证书的随机串、加密证书的附加数据转换为 Buffer 对象
+  const nonceBytes = Buffer.from(nonce);
+  const adBytes = Buffer.from(associated_data);
+  // 将 Base64 编码的密文字符串转换为 Buffer 对象
+  const data = Buffer.from(ciphertext, 'base64');
+  // 使用 AES-GCM 算法创建 Cipher 对象
+  const aesGCM = this.crypto.createDecipheriv('aes-256-gcm', keyBytes, nonceBytes);
+  // 设置关联数据
+  aesGCM.setAAD(adBytes);
+  // 设置解密时需要验证的 tag
+  aesGCM.setAuthTag(data.subarray(-16));
+  // 对数据进行解密并获取结果
+  const decrypted = aesGCM.update(data.subarray(0, -16));
+  aesGCM.final();
+  return decrypted.toString('utf-8');
 };
 
 module.exports = tools;
