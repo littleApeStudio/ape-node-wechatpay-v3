@@ -1,7 +1,7 @@
 {
   "name": "ape-node-wechatpay-v3",
-  "version": "1.0.21",
-  "description": "微信支付V3-node版SDK",
+  "version": "1.0.3",
+  "description": "微信支付 V3-node 版SDK",
   "keywords": [
     "node",
     "wechat",
