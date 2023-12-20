@@ -14,6 +14,8 @@
 
 - [获取 HTTP Authorization 头](#获取-http-authorization-头)
 
+- [获取 jsapi 客户端签名值](#获取jsapi客户端签名值)
+
 - [下载微信支付平台证书](#下载微信支付平台证书)
 
 - [支付回调签名验证](#支付回调签名验证)
@@ -107,6 +109,23 @@ let authorization = weChatPay.getAuthorization(nonce_str, timestamp, signature);
 | `nonce_str` | 请求随机串（需要与获取签名值的一致） | 是       |
 | `timestamp` | 时间戳                               | 是       |
 | `signature` | 签名值                               | 是       |
+
+### 获取 jsapi 客户端签名值
+
+示例代码
+
+```javascript
+let paySign = this.getJsapiSignature(appid, timeStamp, nonceStr, package);
+```
+
+参数说明
+
+| 参数名称    | 参数介绍           | 是否必须 |
+| :---------- | :----------------- | :------- |
+| `appid`     | 应用 ID            | 是       |
+| `timeStamp` | 时间戳             | 是       |
+| `nonceStr`  | 随机字符串         | 是       |
+| `package`   | 订单详情扩展字符串 | 是       |
 
 ### 下载微信支付平台证书
 
@@ -234,10 +253,18 @@ try {
   console.log(error);
 }
 console.log(result);
-// 正常返回如下示例
+// 正常返回如下示例(data中包含jsapi支付客户端（小程序或者网页）所需要的全部参数)
 // {
-//     "code": 200,
-//     "prepay_id": "xxxxxxxxxx"
+//   code: 200,
+//   data: {
+//     appid: 'xxxxxx',
+//     timeStamp: 'xxxxxx',
+//     nonceStr: 'xxxxxx',
+//     package: 'prepay_id=xxxxxx',
+//     signType: 'RSA',
+//     paySign: 'xxxxxx'
+//   },
+//   msg: 'success'
 // }
 ```
 

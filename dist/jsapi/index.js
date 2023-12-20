@@ -32,15 +32,27 @@ jsapi.jsapiPay = function (param) {
                 },
                 data: param
             }).then((res) => {
+                let appid = param.appid
+                let timeStamp = Math.floor(Date.now() / 1000)
+                let nonceStr = this.getRandomString()
+                let package = "prepay_id=" + res.data.prepay_id
+                let paySign = this.getJsapiSignature(appid,timeStamp,nonceStr,package)
                 resolve({
                     code: res.status,
-                    prepay_id: res.data.prepay_id,
+                    data: {
+                        appid: appid,
+                        timeStamp: String(timeStamp),
+                        nonceStr: nonceStr,
+                        package: package,
+                        signType: "RSA",
+                        paySign: paySign
+                    },
                     msg: "success"
                 })
             }).catch((err) => {
                 reject({
                     code: err.response ? err.response.status : 500,
-                    data: err.response ? err.response.data : "",
+                    data: err.response ? err.response.data : err,
                     msg: "jsapi 支付下单返回异常"
                 })
             })

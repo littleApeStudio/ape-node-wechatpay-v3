@@ -58,6 +58,28 @@ tools.getAuthorization = function (nonce_str, timestamp, signature) {
 };
 
 /**
+ *
+ * @param appid 应用ID
+ * @param timeStamp 时间戳
+ * @param nonceStr 随机字符串
+ * @param package 订单详情扩展字符串
+ */
+tools.getJsapiSignature = function (appid, timeStamp, nonceStr, package) {
+  // 生成签名串
+  let signString = `${appid}\n${timeStamp}\n${nonceStr}\n${package}\n`;
+  // 创建Sign对象，并指定算法为SHA256
+  let createSign = this.crypto.createSign("SHA256");
+  // 更新签名串
+  createSign.update(signString);
+  // 使用公钥进行签名
+  let signature = createSign.sign(this.apiclientkey);
+  // 对签名结果进行Base64编码
+  signature = signature.toString("base64");
+  // 返回签名
+  return signature;
+};
+
+/**
  * 下载微信支付平台证书（会生成 wechatpay.pem 和 wechatpaySerial.txt 俩个文件）
  */
 tools.getWeChatPayCert = function () {
